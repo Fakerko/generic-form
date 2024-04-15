@@ -80,7 +80,7 @@ export const ConfigForm = ({ data, config, control }: {
 						/>
 						break;
 				}
-				return <label key={item?.key} className={["grid sm:grid-cols-2 justify-start gap-4", fieldList.length > 0 ? "items-start" : "items-center"].join(" ")}>
+				return <label key={item?.key} className={["grid md:grid-cols-2 justify-start gap-4", fieldList.length > 0 ? "items-start" : "items-center"].join(" ")}>
 					{item?.key}
 					{fieldList && (
 						<div>

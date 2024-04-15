@@ -317,7 +317,7 @@ export default function Page() {
 	};
 
 	return (
-		<section className="mx-auto max-w-2xl my-10">
+		<section className="mx-auto px-4 max-w-3xl my-10">
 			<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 				<ConfigForm data={externalData} config={formTypes} control={control} />
 				<button className="py-2.5 px-4 bg-slate-500 text-white hover:bg-slate-700" type="submit">Submit form</button>
