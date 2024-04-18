@@ -3,6 +3,9 @@ import { forwardRef } from "react";
 type InputProps = {
 	className?: string;
 	type?: string;
+	defaultChecked?: boolean;
+	readOnly?: boolean;
+	defaultValue?: string;
 };
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(({ className, ...props }, ref) => {

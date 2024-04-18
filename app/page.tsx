@@ -304,8 +304,8 @@ export default function Page() {
 		const updatedData = externalData.map((item) => {
 			if (item.key in data) {
 				if (typeof data[item.key] === "object") {
-					data[item.key] = Object.keys(data[item.key]).filter((key) => data[item.key][key]).join(",");
-					item.value = data[item.key].replaceAll("-", ".");
+					const newItem = Object.keys(data[item.key]).filter((key) => data[item.key][key]).join(",");
+					item.value = newItem.replaceAll("-", ".");
 				} else {
 					item.value = data[item.key];
 				}

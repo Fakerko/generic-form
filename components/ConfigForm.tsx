@@ -2,11 +2,12 @@ import React from "react";
 import { Input } from "@/components/Input";
 import { type TFormTypes } from "@/constants/formTypes";
 import { type TDataTypes } from "@/app/page";
+import { type Control } from "react-hook-form";
 
 export const ConfigForm = ({ data, config, control }: {
 	data: TDataTypes[],
 	config: TFormTypes[],
-	control: any
+	control: Control;
 }) => {
 
 	const getFieldTypeByValue = (value: string) => {
@@ -16,10 +17,6 @@ export const ConfigForm = ({ data, config, control }: {
 
 		if (!isNaN(Number(value))) {
 			return "number";
-		}
-
-		if (value.includes(",")) {
-			return "unknown";
 		}
 
 		return "text";
@@ -37,6 +34,7 @@ export const ConfigForm = ({ data, config, control }: {
 						field = <Input
 							{...control.register(item?.key)}
 							type="checkbox"
+							className="w-4"
 							defaultChecked={item?.value === "true"}
 							readOnly={item?.readonly}
 						/>
@@ -68,6 +66,15 @@ export const ConfigForm = ({ data, config, control }: {
 								readOnly={item?.readonly}
 							/>);
 						});
+						field = <div>
+							{fieldList.length > 0 ? fieldList.map((field, index) => (
+								<label className="flex gap-4 items-center" key={index}>
+									{field}
+									{configData?.options &&
+										configData.options[index].replaceAll(".", " ")}
+								</label>
+							)) : field}
+						</div>
 						break;
 					default:
 					case "text":
@@ -82,17 +89,7 @@ export const ConfigForm = ({ data, config, control }: {
 				}
 				return <label key={item?.key} className={["grid md:grid-cols-2 justify-start gap-4", fieldList.length > 0 ? "items-start" : "items-center"].join(" ")}>
 					{item?.key}
-					{fieldList && (
-						<div>
-							{fieldList.length > 0 ? fieldList.map((field, index) => (
-								<label className="flex gap-4 items-center" key={index}>
-									{field}
-									{configData?.options &&
-										configData.options[index].replaceAll(".", " ")}
-								</label>
-							)) : field}
-						</div>
-					)}
+					{field}
 				</label>
 			}
 		});
